@@ -70,3 +70,18 @@ def get_db_info(config_file, column_name, table_name):
     close_connection(cursor, conn)
     
     return results
+
+# SQL-Abfrage, um Foreign Key abzurufen
+def get_db_info2(config_file, column_name, table_name, where_column, where_value):
+    conn = connect_to_db(config_file)
+    cursor = create_cursor(conn)
+
+    query = f"SELECT {column_name} FROM {table_name} WHERE {where_column} = '{where_value}'"
+    cursor.execute(query)
+
+    results = cursor.fetchone()
+
+    return results
+
+    # Verbindung schließen
+    close_connection(cursor, conn)

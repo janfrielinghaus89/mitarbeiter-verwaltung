@@ -28,7 +28,7 @@ create_employee = [
     [pygui.Text('Nachname:', size = (30,1)), pygui.InputText(key = 'nachname')],
     [pygui.Text('Vorname:', size = (30,1)), pygui.InputText(key = 'vorname')],
     [pygui.Text('Position:', size = (30,1)), pygui.Combo(dbtools.get_db_info(dbtools.config_file, 'Bezeichnung', 'Position'), key = 'position')],
-    [pygui.Text('Zeitmodell:', size = (30,1)), pygui.Combo(dbtools.get_db_info(dbtools.config_file, 'Modell', 'Zeitmodell'), key = 'position')],
+    [pygui.Text('Zeitmodell:', size = (30,1)), pygui.Combo(dbtools.get_db_info(dbtools.config_file, 'Modell', 'Zeitmodell'), key = 'zeitmodell')],
     [pygui.Text('Gehalt:', size = (30,1)), pygui.InputText(key = 'gehalt')],
     [pygui.Button('Mitarbeiter anlegen', key = 'anlegen'), pygui.Exit()]
 ]
