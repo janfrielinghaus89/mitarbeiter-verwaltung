@@ -1,10 +1,8 @@
-# Mitarbeiter anlegen
-# Mitarbeiter in MySQL exportieren
+# -*- coding: utf-8 -*-
 
 import layout
 import database as dbtools
 import PySimpleGUI as pygui
-import mysql.connector
 
 # SQL-Query, um MA anzulegen
 def create_employee(config_file, nachname, vorname, posID, zeitID, gehalt):
@@ -23,7 +21,7 @@ def create_employee(config_file, nachname, vorname, posID, zeitID, gehalt):
     except Exception as e:
         # Bei einem Fehler die Transaktion rückgängig machen und Fehler protokollieren
         conn.rollback()
-        print(f"Fehler beim Hinzufügen des Mitarbeiters: {str(e)}")
+        print(f"Fehler beim Anlegen des Mitarbeiters: {str(e)}")
     finally:
         # Überprüfen, ob der INSERT erfolgreich war
         if cursor.rowcount > 0:
@@ -58,9 +56,9 @@ while True:
     
             if position_ID is not None and zeitmodell_ID is not None:
                 if create_employee(dbtools.config_file, values['nachname'], values['vorname'], position_ID, zeitmodell_ID, gehalt_rounded):
-                    pygui.popup('Mitarbeiter wurde erfolgreich hinzugefügt.')
+                    pygui.popup('Mitarbeiter wurde erfolgreich angelegt.')
                 else:
-                    pygui.popup('Fehler beim Hinzufügen des Mitarbeiters.')
+                    pygui.popup('Fehler beim Anlegen des Mitarbeiters.')
             else:
                 pygui.popup('Position oder Zeitmodell nicht gefunden.')
         except Exception as e:

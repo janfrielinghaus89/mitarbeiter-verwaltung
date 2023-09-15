@@ -6,6 +6,7 @@ import mysql.connector
 ##########
 
 config_file = 'config.json'
+table_mitarbeiter = 'Mitarbeiter'
 
 # Funktion um die Config aus json-File zu erhalten
 def get_config(filename):
@@ -81,7 +82,22 @@ def get_db_info2(config_file, column_name, table_name, where_column, where_value
 
     results = cursor.fetchone()
 
+    # Verbindung schließen
+    close_connection(cursor, conn)
+
     return results
+
+# SQL-Abfrage, um den oder die Mitarbeiter auszugeben
+def get_ma_info(config_file, table_name, where_column, where_value):
+    conn = connect_to_db(config_file)
+    cursor = create_cursor(conn)
+
+    query = f"SELECT * FROM {table_name} WHERE {where_column} = '{where_value}'"
+    cursor.execute(query)
+
+    results = cursor.fetchall()
 
     # Verbindung schließen
     close_connection(cursor, conn)
+
+    return results
